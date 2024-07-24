@@ -4,7 +4,8 @@ export const BalanceCard = ({amount, locked}: {
     amount: number;
     locked: number;
 }) => {
-    return <Card title={"Balance"}>
+    return <div className="w-full">
+        <Card title={"Balance"} >
         <div className="flex justify-between border-b border-slate-300 pb-2">
             <div>
                 Unlocked balance
@@ -30,4 +31,5 @@ export const BalanceCard = ({amount, locked}: {
             </div>
         </div>
     </Card>
+    </div>
 }

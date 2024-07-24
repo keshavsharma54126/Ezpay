@@ -1,0 +1,69 @@
+import {SendCard} from "../../../components/SendCard"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../../lib/auth"
+import prisma from "@repo/db/client"
+import {P2pTransactions} from "../../../components/P2pTransactions"
+
+async function getBalance() {
+    const session = await getServerSession(authOptions);
+    const balance = await prisma.balance.findFirst({
+        where: {
+            userId: Number(session?.user?.id)
+        }
+    });
+    return {
+        amount: balance?.amount || 0,
+    }
+}
+async function getp2pTransactoins(){
+    const session = await getServerSession(authOptions);
+    const sentTransactions = await prisma.p2pTransfer.findMany({
+        where:{
+            fromUserId:Number(session?.user?.id)
+        },orderBy:{
+            timestamp:'desc'
+        },take:5,
+
+    })
+    const toTransactions = await prisma.p2pTransfer.findMany({
+        where:{
+            toUserId:Number(session?.user?.id)
+        },orderBy:{
+            timestamp:'desc'
+        },take:5,
+
+    })
+    const combinedTransactions = [
+        ...sentTransactions.map(tx => ({...tx,type:'sent'})),
+        ...toTransactions.map(tx=>({...tx,type:'recieved'}))
+    ];
+
+    const sortedTransactions =combinedTransactions.sort((a,b)=> (b.timestamp.getTime()-a.timestamp.getTime()));
+
+    const top5transactions = sortedTransactions.slice(0,5);
+    return top5transactions;
+}
+
+export default async function(){
+    
+    const balance = (await getBalance()).amount
+    const p2pTransactoins = await getp2pTransactoins()
+
+
+
+    return <div className="w-full">
+        <div className="flex items-center flex-col">
+            <div className="text-4xl text-[#6a51a6] pt-8 font-bold ">
+                Transfer
+            </div>
+            <div className="flex flex-row gap-4 ">
+                <div className="pt-24">
+                    <SendCard/>
+                </div>
+                <div className="pt-24">
+                    <P2pTransactions balance={balance} transactions={p2pTransactoins}/>
+                </div>
+            </div>
+        </div>
+    </div>
+}

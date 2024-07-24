@@ -29,10 +29,13 @@ export const OnRampTransactions = ({
                         {t.time.toDateString()}
                     </div>
                 </div>
+                
                 <div className="flex flex-col justify-center">
                     + Rs {t.amount / 100}
                 </div>
-
+                <div className="flex justify-center items-center">
+                    {(t.status==="Processing")?<div className="text-yellow-500">Processing</div>:(t.status==="Success")?<div className="text-green-500">Success</div>:<div className="text-red-500">Failed</div>}
+                </div>
             </div>)}
         </div>
     </Card>
