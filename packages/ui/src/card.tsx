@@ -1,20 +1,19 @@
 import React from "react";
 
-export function Card({
-  title,
-  children,
-}: {
+interface CardProps {
   title: string;
   children?: React.ReactNode;
-}): JSX.Element {
+}
+
+export const Card = ({ title, children }: CardProps): JSX.Element => {
   return (
-    <div
-      className="border p-6 bg-white rounded-xl bg-[#ededed]"
-    >
-      <h1 className="text-xl border-b pb-2">
+    <div className="border p-6 bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      <h1 className="text-2xl font-bold text-indigo-600 border-b pb-4 mb-4">
         {title}
       </h1>
-      <p>{children}</p>
+      <div className="text-gray-700">
+        {children}
+      </div>
     </div>
   );
-}
+};

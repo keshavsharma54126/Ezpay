@@ -34,7 +34,7 @@ export const OnRampTransactions = ({
                     + Rs {t.amount / 100}
                 </div>
                 <div className="flex justify-center items-center">
-                    {(t.status==="Processing")?<div className="text-yellow-500">Processing</div>:(t.status==="Success")?<div className="text-green-500">Success</div>:<div className="text-red-500">Failed</div>}
+                    {(t.status==="Processing")?<div className="text-yellow-500">Processing</div>:<div className="text-green-500">Success</div>}
                 </div>
             </div>)}
         </div>

@@ -53,8 +53,8 @@ export default async function(){
 
     return <div className="w-full">
         <div className="flex items-center flex-col">
-            <div className="text-4xl text-[#6a51a6] pt-8 font-bold ">
-                Transfer
+            <div className="text-4xl text-indigo-600 pt-8 font-bold ">
+                P2P Transfer
             </div>
             <div className="flex flex-row gap-4 ">
                 <div className="pt-24">

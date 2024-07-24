@@ -1,18 +1,25 @@
-"use client"
+"use client";
 
-export const TextInput = ({
-    placeholder,
-    onChange,
-    disabled,
-    label
-}: {
-    placeholder: string;
-    onChange: (value: string) => void;
-    disabled:boolean
-    label: string;
-}) => {
-    return <div className="pt-2">
-        <label className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
-        <input  disabled={disabled} onChange={(e) => onChange(e.target.value)} type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} />
-    </div>
+import React from "react";
+
+interface TextInputProps {
+  placeholder: string;
+  onChange: (value: string) => void;
+  disabled: boolean;
+  label: string;
 }
+
+export const TextInput = ({ placeholder, onChange, disabled, label }: TextInputProps): JSX.Element => {
+  return (
+    <div className="pt-4">
+      <label className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
+      <input
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.value)}
+        type="text"
+        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 transition duration-150 ease-in-out ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};

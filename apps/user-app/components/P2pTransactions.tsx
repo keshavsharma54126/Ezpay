@@ -43,7 +43,7 @@ export const P2pTransactions = ({
                              Rs {t.amount / 100}
                         </div>
                         <div className="flex justify-center items-center">
-                            {(t.type==="sent")?<div className="text-red-600">Sent</div>:(t.type==="received")?<div className="text-green-500">Received</div>:<div className="text-red-500">Failed</div>}
+                            {(t.type==="sent")?<div className="text-red-600">Sent</div>:<div className="text-green-500">Received</div>}
                         </div>
                     </div>)}
                 </div>

@@ -1,28 +1,33 @@
+"use client";
+
 import { Button } from "./button";
 
 interface AppbarProps {
     user?: {
         name?: string | null;
-    },
-    // TODO: can u figure out what the type should be here?
-    onSignin: any,
-    onSignout: any
+    };
+    onSignin: () => void;
+    onSignout: () => void;
 }
 
-export const Appbar = ({
-    user,
-    onSignin,
-    onSignout
-}: AppbarProps) => {
-    return <div className="flex justify-between border-b px-4 py-4 border-slate-300">
-        <div className="text-3xl flex flex-col justify-center font-extrabold ">
-            EZpay
+export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
+    return (
+        <div className="flex justify-between items-center border-b px-6 py-4 border-gray-300 bg-white shadow-md">
+            <div className="text-4xl font-bold text-indigo-600">
+                EZpay
+            </div>
+            <div className="flex items-center gap-6">
+                <div className="text-lg font-semibold text-gray-700">
+                    Welcome, {user?.name || "Guest"}
+                </div>
+                <Button 
+                    onClick={user ? onSignout : onSignin}
+                    disabled={false}
+                    aria-label={user ? "Logout" : "Login"}
+                >
+                    {user ? "Logout" : "Login"}
+                </Button>
+            </div>
         </div>
-        <div className="flex flex-col justify-center pt-2">
-           <div className="flex flex-row items-center gap-4 text-[#6a51a6] text-2xl">
-                <div className="font-extrabold">Welcome {user?.name}</div>
-                <Button disabled={false} onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
-           </div>
-        </div>
-    </div>
-}
+    );
+};

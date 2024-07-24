@@ -5,6 +5,7 @@ import { Select } from "@repo/ui/select";
 import {  useState } from "react";
 import { TextInput } from "@repo/ui/textinput";
 import {createOnRampTransactions} from "../app/lib/actions/createOnrampTransactions"
+//@ts-ignore
 import {Loader} from "@repo/ui/Loader"
 
 const SUPPORTED_BANKS = [{

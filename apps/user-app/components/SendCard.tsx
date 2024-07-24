@@ -28,8 +28,7 @@ export function SendCard() {
     };
 
     return (
-        <div className="h-full w-full">
-            <Center>
+
                 <Card title="Send">
                     <div className="min-w-72 pt-2">
                         <TextInput
@@ -55,7 +54,6 @@ export function SendCard() {
                         </div>
                     </div>
                 </Card>
-            </Center>
-        </div>
+
     );
 }
