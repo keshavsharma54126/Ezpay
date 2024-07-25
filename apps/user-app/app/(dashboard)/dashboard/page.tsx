@@ -22,6 +22,9 @@ async function getBalance() {
 
 async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+        throw new Error("Unauthenticated request");
+    }
     const txns = await prisma.onRampTransaction.findMany({
         where: {
             userId: Number(session?.user?.id)
