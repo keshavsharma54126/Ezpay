@@ -10,7 +10,8 @@
     "./center": "./src/Center.tsx",
     "./select": "./src/Select.tsx",
     "./textinput": "./src/TextInput.tsx",
-    "./Loader": "./src/Loader"
+    "./Loader": "./src/Loader",
+    "./BarHigh": "./src/BarHigh.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -29,6 +30,11 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "shadcn-ui": "^0.8.0"
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.414.0",
+    "recharts": "^2.12.7",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
   }
 }

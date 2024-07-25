@@ -41,7 +41,7 @@ export default async function() {
         <div className="text-4xl text-indigo-600 pt-8 mb-8 font-bold flex justify-center">
             Transfer
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 p-4">
             <div>
                 <AddMoney />
             </div>

@@ -20,8 +20,8 @@ export const OnRampTransactions = ({
     }
     return <Card title="Recent Transactions">
         <div className="pt-2">
-            {transactions.map(t => <div className="flex justify-between">
-                <div>
+            {transactions.map(t => <div className="flex justify-between lg:gap-10">
+                <div >
                     <div className="text-sm">
                         Received INR
                     </div>
@@ -31,10 +31,10 @@ export const OnRampTransactions = ({
                 </div>
                 
                 <div className="flex flex-col justify-center">
-                    + Rs {t.amount / 100}
+                     Rs {t.amount / 100}
                 </div>
                 <div className="flex justify-center items-center">
-                    {(t.status==="Processing")?<div className="text-yellow-500">Processing</div>:<div className="text-green-500">Success</div>}
+                    {(t.status==="Processing")?<div className="text-yellow-500">Processing</div>:<div className="text-green-500">Successfull</div>}
                 </div>
             </div>)}
         </div>
