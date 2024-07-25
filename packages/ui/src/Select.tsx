@@ -15,7 +15,7 @@ export const Select = ({ options, onSelect }: SelectProps): JSX.Element => {
     <div className="relative inline-block w-full">
       <select
         onChange={(e) => onSelect(e.target.value)}
-        className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 shadow-sm transition duration-150 ease-in-out"
+        className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 shadow-sm transition duration-150 ease-in-out"
       >
         {options.map(option => (
           <option key={option.key} value={option.key}>

@@ -17,7 +17,7 @@ export const TextInput = ({ placeholder, onChange, disabled, label }: TextInputP
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
         type="text"
-        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 transition duration-150 ease-in-out ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`bg-gray-50 border border-indigo-500 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-600 block w-full p-2.5 transition duration-150 ease-in-out ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         placeholder={placeholder}
       />
     </div>
