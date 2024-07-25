@@ -59,7 +59,7 @@ export function ChatCard() {
         <div>
             <Card title="Recent Conversations">
                 <div>
-                    <div className="text-indigo-500">Find People</div>
+                    <div className="text-indigo-500 text-xl mb-2">Find People</div>
                        <div className="flex flex-row gap-2">
                             <Input
                                     type="text"
