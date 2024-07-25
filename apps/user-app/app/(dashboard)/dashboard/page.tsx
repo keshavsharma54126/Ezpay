@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import {BarHigh} from "../../../components/BarHigh"
 import { Card } from "@repo/ui/card";
+import { ChatCard } from "../../../components/ChatCard";
 
 
 async function getBalance() {
@@ -38,6 +39,9 @@ export default async function Dashboard() {
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
     const session = await getServerSession(authOptions);
+    if(!session){
+        return <div>please login to view dashboard</div>
+    }
    
     return (
         <div className="min-h-screen flex flex-col items-center">
@@ -70,7 +74,7 @@ export default async function Dashboard() {
                     </Card>
                 </div>
                 <div className="w-full">
-                    <Card title="Recent Conversations"></Card>
+                    <ChatCard/>
                 </div>
             </main>
         </div>

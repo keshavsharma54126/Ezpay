@@ -17,6 +17,9 @@ async function getBalance() {
 }
 async function getp2pTransactoins(){
     const session = await getServerSession(authOptions);
+    if(!session){
+        return <div>plesae login to initiate p2p transfer</div>
+    }
     const sentTransactions = await prisma.p2pTransfer.findMany({
         where:{
             fromUserId:Number(session?.user?.id)

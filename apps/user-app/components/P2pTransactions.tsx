@@ -29,7 +29,7 @@ export const P2pTransactions = ({
             <Card title="Recent Transactions">
             
                 <div className="pt-2">
-                    {transactions.map(t => <div className="flex justify-between gap-12">
+                    {transactions.map(t => <div key={t.id} className="flex justify-between gap-12">
                         <div>
                             <div className="text-sm">
                                 Received INR

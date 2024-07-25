@@ -11,7 +11,8 @@
     "./select": "./src/Select.tsx",
     "./textinput": "./src/TextInput.tsx",
     "./Loader": "./src/Loader",
-    "./BarHigh": "./src/BarHigh.tsx"
+    "./BarHigh": "./src/BarHigh.tsx",
+    "./search":"./@/components/ui/input.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

@@ -26,6 +26,7 @@
     "@types/react": "^18.3.3",
     "@types/react-spinner": "^0.2.3",
     "react-spinner": "^0.2.7",
-    "react-spinners": "^0.14.1"
+    "react-spinners": "^0.14.1",
+    "wscat": "^5.2.1"
   }
 }
