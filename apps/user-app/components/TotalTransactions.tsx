@@ -45,7 +45,7 @@ export function TotalTransactions({ transactions }: { transactions: Transaction[
            <Select onSelect={handleSelection} options={sortType.map(st=>({key:st.type,value:st.type}))}/>
         </div>
       <div className="pt-2 space-y-4">
-        {transactions.map(t => (
+        {transactions.map((t:Transaction) => (
           <div key={t.id} className="flex justify-between items-center gap-20 lg:gap-26 p-2 hover:bg-gray-50">
             <div>
               <div className="text-sm font-medium">
