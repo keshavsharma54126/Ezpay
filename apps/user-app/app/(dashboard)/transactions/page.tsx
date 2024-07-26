@@ -44,11 +44,11 @@ async function TransactionsPage() {
   ]);
 
   const combinedTransactions: Transaction[] = [
-    ...sentTransactions.map(tx => ({ ...tx, type: 'sent' as TransactionType })),
-    ...receivedTransactions.map(tx => ({ ...tx, type: 'received' as TransactionType })),
-    ...onRampTransactions.map(tx => ({ 
+    ...sentTransactions.map((tx: Transaction) =>({ ...tx, type: 'sent' as TransactionType })),
+    ...receivedTransactions.map((tx:Transaction) => ({ ...tx, type: 'received' as TransactionType })),
+    ...onRampTransactions.map((tx:Transaction)=> ({ 
       ...tx, 
-      timestamp: tx.startTime, 
+      timestamp: tx.timestamp, 
       type: 'bank transfer' as TransactionType 
     })),
   ];
