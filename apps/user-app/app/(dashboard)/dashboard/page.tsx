@@ -48,9 +48,9 @@ export default async function Dashboard() {
    
     return (
         <div className="min-h-screen flex flex-col items-center">
-            <header className="bg-white w-full shadow-md py-6">
+            <header className="bg-white w-full shadow-md py-2">
                 <div className="container mx-auto px-6">
-                    <h1 className="text-3xl font-semibold text-indigo-600">Hi {(session?.user?.name).toUpperCase()}, Welcome to your dashboard</h1>
+                    <h1 className="text-xl font-semibold text-indigo-600">Hi {(session?.user?.name).toUpperCase()}, Welcome to your dashboard</h1>
                 </div>
             </header>
             <main className="container mx-auto px-6 py-8 flex flex-col justify-center gap-6 lg:flex-row w-4xl">

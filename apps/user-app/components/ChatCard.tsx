@@ -174,7 +174,9 @@ export function ChatCard() {
         try {
             const newMessageData = {
                 conversationId: activeConversation.id,
+                //@ts-ignore
                 senderId: Number(session?.user?.id),
+                //@ts-ignore
                 receiverId: activeConversation.user1Id === Number(session?.user?.id) 
                   ? activeConversation.user2Id 
                   : activeConversation.user1Id,
@@ -187,6 +189,8 @@ export function ChatCard() {
             setError("An unexpected error occurred");
         }
     };
+    //@ts-ignore
+    const userid=session?.user?.id
 
     return (
         <div>
@@ -230,7 +234,8 @@ export function ChatCard() {
                                 onClick={() => {setActiveConversation(conv)}}
                             >
                                 <div className={`text-indigo-600 my-1 mx-2 ${conv==activeConversation?`text-white`:`text-indigo-500`}`}>
-                                    {conv.user1Id === Number(session?.user?.id )? conv.user2.name : conv.user1.name}
+                                
+                                    {conv.user1Id ===Number(userid)? conv.user2.name : conv.user1.name}
                                 </div>
                             </div>
                             <div>
@@ -248,6 +253,7 @@ export function ChatCard() {
                                 <div
                                     key={msg.id}
                                     className={`my-1 p-2 rounded ${
+                                        //@ts-ignore
                                         msg.senderId === Number(session?.user?.id) ? 'bg-indigo-100 text-right' : 'bg-gray-100 text-left'
                                     }`}
                                 >
