@@ -33,8 +33,11 @@ export const getUserTransactions = async () => {
         }
     });
     const combinedTransactions = [
+        //@ts-ignore
         ...sentTransactions.map(tx => ({...tx,type:'sent'})),
+        //@ts-ignore
         ...toTransactions.map(tx=>({...tx,type:'recieved'})),
+        //@ts-ignore
         ...txns.map(tx=>({...tx,timestamp:tx.startTime,type:"bank transfer"}))
     ];
 
