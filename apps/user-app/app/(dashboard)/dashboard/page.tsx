@@ -5,7 +5,19 @@ import { authOptions } from "../../lib/auth";
 import {BarHigh} from "../../../components/BarHigh"
 import { Card } from "@repo/ui/card";
 import { ChatCard } from "../../../components/ChatCard";
+import { $Enums } from "@prisma/client";
 
+interface ti{
+    
+        id: number;
+        status: $Enums.OnRampStatus;
+        token: string;
+        provider: string;
+        amount: number;
+        startTime: Date;
+        userId: number;
+    
+}
 
 async function getBalance() {
     const session = await getServerSession(authOptions);
@@ -30,7 +42,7 @@ async function getOnRampTransactions() {
             userId: Number(session?.user?.id)
         }
     });
-    return txns.map(t => ({
+    return txns.map((t:ti) => ({
         time: t.startTime,
         amount: t.amount,
         status: t.status,
