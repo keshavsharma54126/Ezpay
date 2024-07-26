@@ -5,12 +5,12 @@ import { authOptions } from "../../lib/auth";
 import {BarHigh} from "../../../components/BarHigh"
 import { Card } from "@repo/ui/card";
 import { ChatCard } from "../../../components/ChatCard";
-import { $Enums } from "@prisma/client";
+
 
 interface ti{
     
         id: number;
-        status: $Enums.OnRampStatus;
+        status: string;
         token: string;
         provider: string;
         amount: number;
