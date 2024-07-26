@@ -4,6 +4,16 @@ import { authOptions } from "../../lib/auth"
 import prisma from "@repo/db/client"
 import {P2pTransactions} from "../../../components/P2pTransactions"
 
+interface txi{
+    
+        id: number;
+        amount: number;
+        timestamp: Date;
+        fromUserId: number;
+        toUserId: number;
+
+}
+
 async function getBalance() {
     const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
@@ -37,8 +47,8 @@ async function getp2pTransactoins(){
 
     })
     const combinedTransactions = [
-        ...sentTransactions.map(tx => ({...tx,type:'sent'})),
-        ...toTransactions.map(tx=>({...tx,type:'recieved'}))
+        ...sentTransactions.map((tx:txi) => ({...tx,type:'sent'})),
+        ...toTransactions.map((tx:txi)=>({...tx,type:'recieved'}))
     ];
 
     const sortedTransactions =combinedTransactions.sort((a,b)=> (b.timestamp.getTime()-a.timestamp.getTime()));
