@@ -59,10 +59,10 @@ export default async function Dashboard() {
                         <div>
                             <div className="text-indigo-600 text-xl font-semibold flex flex-row md:flex-col gap-2 justify-around">
                                 <div>
-                                    Current Balance: Rs {balance.amount}
+                                    Current Balance: Rs {balance.amount/100}
                                 </div>
                                 <div>
-                                    Locked Balance : Rs {balance.locked}
+                                    Locked Balance : Rs {balance.locked/100}
                                 </div>
                             </div>
                             <div>

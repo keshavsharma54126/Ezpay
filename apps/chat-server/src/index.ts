@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // or specify the allowed origin(s), e.g., ["http://localhost:3000"]
+    origin: "http://localhost:3001",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
@@ -21,11 +21,17 @@ io.on('connection', (socket: Socket) => {
   
   socket.on('join', async (conversationId: number) => {
     console.log('User joined conversation', conversationId);
+    socket.join(conversationId.toString());
     const messages = await prisma.message.findMany({ 
       where: { conversationId },
       orderBy: { createdAt: 'asc' }
     });
     socket.emit('load_messages', messages);
+  });
+
+  socket.on('leave', (conversationId: number) => {
+    console.log('User left conversation', conversationId);
+    socket.leave(conversationId.toString());
   });
 
   socket.on('message', async ({ conversationId, senderId, text }) => {
