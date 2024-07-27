@@ -1,17 +1,8 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
-import {DefaultUser,DefaultSession} from "next-auth"
-import {JWT} from "next-auth/jwt"
-interface Session {
-    user: {
-      id: string;
-    } & DefaultSession["user"];
-  }
 
-  interface User extends DefaultUser {
-    id: string;
-  }
+
 
 export const authOptions = {
     providers: [
@@ -73,6 +64,11 @@ export const authOptions = {
             }
 
             return session
+        },
+        async redirect({url,baseUrl}:any){
+            if(url.startsWith("/")) return `${baseUrl}${url}`;
+            else if(new URL(url).origin===baseUrl) return url;
+            return baseUrl
         }
     }
   }

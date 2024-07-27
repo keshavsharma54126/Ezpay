@@ -5,10 +5,10 @@ import prisma from '@repo/db/client';
 
 const app = express();
 const server = http.createServer(app);
-const link = process.env.CORS_ORIGIN
+const link = process.env.CORS_ORIGIN;
 const io = new Server(server, {
   cors: {
-    origin: link,
+    origin: "http://localhost:3001",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true

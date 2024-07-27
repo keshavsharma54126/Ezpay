@@ -250,14 +250,16 @@ export function ChatCard() {
                     <Card title="Chat">
                         <div className="h-96  overflow-y-scroll p-2 border border-gray-300">
                             {chatMessages.map((msg) => (
-                                <div
-                                    key={msg.id}
-                                    className={`my-1 p-2 rounded ${
-                                        //@ts-ignore
-                                        msg.senderId === Number(session?.user?.id) ? 'bg-indigo-100 text-right' : 'bg-gray-100 text-left'
-                                    }`}
-                                >
-                                    {msg.text}
+                                <div className="flex bg-[#ebe6e6]">
+                                    <div
+                                        key={msg.id}
+                                        className={`my-1 p-2  rounded-xl ${
+                                            //@ts-ignore
+                                            msg.senderId === Number(session?.user?.id) ? 'bg-indigo-300  w-64 ml-auto font-bold' : 'bg-white text-left font-bold w-64'
+                                        }`}
+                                    >
+                                        {msg.text}
+                                    </div>
                                 </div>
                             ))}
                             <div ref={messagesEndRef}></div>
