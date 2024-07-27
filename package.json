@@ -1,9 +1,11 @@
 {
   "name": "week-18",
   "private": true,
+  
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+     "prisma:generate": "turbo run prisma:generate",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -25,6 +27,7 @@
   "dependencies": {
     "@types/react": "^18.3.3",
     "@types/react-spinner": "^0.2.3",
+    "dotenv": "^16.4.5",
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.14.1",
     "wscat": "^5.2.1"
