@@ -1,46 +1,57 @@
-import express from 'express';
-import http from 'http';
-import { Server, Socket } from 'socket.io';
-import prisma from '@repo/db/client';
+import express from "express";
+import http from "http";
+import { Server, Socket } from "socket.io";
+import prisma from "@repo/db/client";
+import cors from "cors";
 
 const app = express();
 const server = http.createServer(app);
-const link = process.env.CORS_ORIGIN;
+const PORT = process.env.PORT || 4000;
+const CORS_ORIGIN = process.env.CORS_ORIGIN;
+
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3001",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
+    credentials: true,
+  },
 });
 
-const PORT = 4000;
+app.use(
+  cors({
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
-io.on('connection', (socket: Socket) => {
-  console.log('a user connected');
-  
-  socket.on('join', async (conversationId: number) => {
-    console.log('User joined conversation', conversationId);
+io.on("connection", (socket: Socket) => {
+  console.log("A user connected");
+
+  socket.on("join", async (conversationId: number) => {
+    console.log("User joined conversation", conversationId);
     socket.join(conversationId.toString());
-    const messages = await prisma.message.findMany({ 
+    const messages = await prisma.message.findMany({
       where: { conversationId },
-      orderBy: { createdAt: 'asc' }
+      orderBy: { createdAt: "asc" },
     });
-    socket.emit('load_messages', messages);
+    socket.emit("load_messages", messages);
   });
 
-  socket.on('leave', (conversationId: number) => {
-    console.log('User left conversation', conversationId);
+  socket.on("leave", (conversationId: number) => {
+    console.log("User left conversation", conversationId);
     socket.leave(conversationId.toString());
   });
 
-  socket.on('message', async ({ conversationId, senderId, text }) => {
-    console.log(`Message received from user ${senderId} in conversation ${conversationId}: ${text}`);
-    
+  socket.on("message", async ({ conversationId, senderId, text }) => {
+    console.log(
+      `Message received from user ${senderId} in conversation ${conversationId}: ${text}`
+    );
+
     const conversation = await prisma.conversation.findUnique({
       where: { id: conversationId },
-      include: { user1: true, user2: true }
+      include: { user1: true, user2: true },
     });
 
     if (!conversation) {
@@ -48,8 +59,11 @@ io.on('connection', (socket: Socket) => {
       return;
     }
 
-    const receiverId = conversation.user1Id === senderId ? conversation.user2Id : conversation.user1Id;
-    
+    const receiverId =
+      conversation.user1Id === senderId
+        ? conversation.user2Id
+        : conversation.user1Id;
+
     const message = await prisma.message.create({
       data: {
         conversationId,
@@ -59,11 +73,11 @@ io.on('connection', (socket: Socket) => {
       },
     });
 
-    io.to(conversationId.toString()).emit('message', message);
+    io.to(conversationId.toString()).emit("message", message);
   });
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
   });
 });
 

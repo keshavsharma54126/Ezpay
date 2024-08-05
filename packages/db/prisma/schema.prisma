@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id                Int                 @id @default(autoincrement())
+  id                Int                @id @default(autoincrement())
   email             String?             @unique
   name              String?
   number            String              @unique
@@ -40,6 +40,7 @@ model OnRampTransaction {
   provider  String
   amount    Int
   startTime DateTime
+  type      onRamptype
   userId    Int
   user      User         @relation(fields: [userId], references: [id])
 }
@@ -94,4 +95,10 @@ enum OnRampStatus {
   Success
   Failure
   Processing
+}
+
+enum onRamptype {
+  Added
+  Withdrawn
+  
 }

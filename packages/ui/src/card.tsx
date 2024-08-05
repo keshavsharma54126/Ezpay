@@ -5,14 +5,32 @@ interface CardProps {
   children?: React.ReactNode;
 }
 
-export const Card = ({ title, children }: CardProps): JSX.Element => {
+export const Card: React.FC<CardProps> = ({ title, children }) => {
   return (
-    <div className="border p-6 bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-      <h1 className="text-2xl font-bold text-indigo-600 border-b pb-4 mb-4">
-        {title}
-      </h1>
-      <div className="text-gray-700">
-        {children}
+    <div
+      className="
+      bg-white 
+      rounded-xl 
+      overflow-hidden
+      border border-gray-200
+      shadow-md 
+      transition-all duration-300 ease-in-out
+      hover:shadow-xl hover:border-indigo-300
+      transform hover:-translate-y-1
+    ">
+      <div className="px-6 py-4">
+        <h2
+          className="
+          text-2xl 
+          font-bold 
+          text-indigo-600 
+          mb-4
+          pb-2
+          border-b border-gray-200
+        ">
+          {title}
+        </h2>
+        <div className="text-gray-700 space-y-2">{children}</div>
       </div>
     </div>
   );
