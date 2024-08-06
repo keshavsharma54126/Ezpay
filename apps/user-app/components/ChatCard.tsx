@@ -221,7 +221,9 @@ export function ChatCard() {
         </div>
         {user && (
           <div className="flex flex-row justify-between my-4 p-3 border border-indigo-500 shadow-lg">
-            <div className="text-indigo-600 my-1 mx-2">{user.name}</div>
+            <div className="text-indigo-600 my-1 mx-2">
+              {user.name}({user.number})
+            </div>
             <div>
               <Button disabled={false} onClick={handleAdd}>
                 Add
@@ -234,18 +236,24 @@ export function ChatCard() {
         <div className="mt-4">
           <div className="text-indigo-500 text-xl mb-2">Conversations</div>
           {conversations.map((conv) => (
-            <div>
+            <div className="">
               <div
                 key={conv.id}
-                className={`flex flex-row justify-between my-2 p-2 border border-indigo-500 shadow-lg cursor-pointer ${conv == activeConversation ? `bg-indigo-500` : `bg-white`}`}
+                className={`flex flex-row justify-between my-2 p-2 border border-indigo-500 shadow-lg hover: bg-indigo-500 cursor-pointer ${conv == activeConversation ? `bg-indigo-500` : `bg-white`}`}
                 onClick={() => {
                   setActiveConversation(conv);
                 }}>
                 <div
-                  className={`text-indigo-600 my-1 mx-2 ${conv == activeConversation ? `text-white` : `text-indigo-500`}`}>
-                  {conv.user1Id === Number(userid)
-                    ? conv.user2.name
-                    : conv.user1.name}
+                  className={`text-indigo-600 my-1 mx-2 hover:bg-indigo-600 hover:text-white ${conv == activeConversation ? `text-white` : `text-indigo-500`}`}>
+                  {conv.user1Id === Number(userid) ? (
+                    <div>
+                      {conv.user2.name}({conv.user2.number})
+                    </div>
+                  ) : (
+                    <div>
+                      {conv.user1.name}({conv.user1.number})
+                    </div>
+                  )}
                 </div>
               </div>
               <div></div>
@@ -285,9 +293,12 @@ export function ChatCard() {
                   }
                 }}
               />
-              <Button disabled={false} onClick={handleSendMessage}>
-                Send
-              </Button>
+              <div className="mx-2">
+                {" "}
+                <Button disabled={false} onClick={handleSendMessage}>
+                  Send
+                </Button>
+              </div>
             </div>
           </Card>
         </div>

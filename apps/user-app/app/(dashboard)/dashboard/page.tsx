@@ -6,6 +6,8 @@ import { Card } from "@repo/ui/card";
 import { ChatCard } from "../../../components/ChatCard";
 import { Suspense } from "react";
 import Loading from "../../../components/Loading";
+import { PieChart } from "lucide-react";
+import { Piecomponent } from "../../../components/Piechart";
 
 interface ti {
   id: number;
@@ -87,6 +89,11 @@ export default async function Dashboard() {
             <Card title="Last Six months Sent and Recieved Transaction Trend">
               <div className="bg-white shadow md">
                 <BarHigh />
+              </div>
+            </Card>
+            <Card title={"Types of Transactions"}>
+              <div>
+                <Piecomponent />
               </div>
             </Card>
           </div>

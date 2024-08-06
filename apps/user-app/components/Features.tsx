@@ -14,7 +14,7 @@ export default function Features() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-teal-900 to-teal-800 pt-16 pb-32 space-y-24">
+    <div className="relative overflow-hidden bg-gradient-to-b from-teal-900 to-teal-800 pt-16 pb-32 space-y-24 rounded-3xl ">
       <motion.div
         className="relative"
         initial="hidden"
