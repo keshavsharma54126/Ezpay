@@ -25,7 +25,7 @@ export default function Layout({
         {/* Toggle button */}
         <button
           onClick={toggleSidebar}
-          className="absolute top-4 right-4 p-2 text-gray-600 hover:text-gray-800">
+          className="absolute top-4 right-1 text-gray-600 hover:text-gray-800">
           {isCollapsed ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"

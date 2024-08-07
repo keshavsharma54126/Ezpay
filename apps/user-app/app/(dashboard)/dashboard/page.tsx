@@ -76,7 +76,7 @@ export default async function Dashboard() {
           </div>
         </header>
         <main className="container mx-auto px-6 py-8 flex flex-col justify-start md:justify-center gap-6 lg:flex-row w-4xl">
-          <div className="w-80 md:w-full flex flex-col gap-6">
+          <div className="w-64 sm:w-full flex flex-col gap-6">
             <Card title="Account Finances">
               <div>
                 <div className="text-indigo-600 text-xl font-semibold flex flex-row md:flex-col gap-2 justify-around">
@@ -92,7 +92,7 @@ export default async function Dashboard() {
               </div>
             </Card>
           </div>
-          <div className="w-80 md:w-full">
+          <div className="w-64 md:w-full">
             <ChatCard />
           </div>
         </main>
