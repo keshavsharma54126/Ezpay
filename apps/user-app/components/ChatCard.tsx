@@ -43,8 +43,7 @@ export function ChatCard() {
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
 
-  const SOCKET_SERVER_URL =
-    process.env.SOCKET_SERVER_URL || "http://localhost:4000";
+  const SOCKET_SERVER_URL = process.env.SOCKET_SERVER_URL || "";
   const { data: session } = useSession();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const socketRef = useRef<Socket | null>(null);

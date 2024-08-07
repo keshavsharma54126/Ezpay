@@ -1,38 +1,71 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "../../../packages/ui/@/components/ui/chart";
-
-const chartData = [
-  { month: "January", sent: 186, revieved: 80 },
-  { month: "February", sent: 305, revieved: 200 },
-  { month: "March", sent: 237, revieved: 120 },
-  { month: "April", sent: 73, revieved: 190 },
-  { month: "May", sent: 209, revieved: 130 },
-  { month: "June", sent: 214, revieved: 140 },
-];
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const chartConfig = {
   sent: {
-    label: "sent",
+    label: "Sent",
     color: "#2563eb",
   },
-  revieved: {
-    label: "revieved",
+  received: {
+    label: "Received",
     color: "#60a5fa",
   },
 } satisfies ChartConfig;
 
 export function BarHigh() {
+  const [error, setError] = useState("");
+  const [chartData, setChartData] = useState([]);
+  const { data: session } = useSession();
+
+  const fetchTransactionData = async () => {
+    if (!session) {
+      console.error("User not authenticated");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/barchart", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setChartData(data.aggregatedData);
+        setError("");
+      } else {
+        setError(data.message || "Failed to fetch data");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred");
+    }
+  };
+
+  useEffect(() => {
+    if (session) {
+      fetchTransactionData();
+    }
+  }, [session]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <ChartContainer config={chartConfig} className="h-[300px] w-full">
-      <BarChart accessibilityLayer data={chartData}>
+      <BarChart data={chartData}>
         <CartesianGrid vertical={false} />
         <XAxis
           dataKey="month"
@@ -41,9 +74,14 @@ export function BarHigh() {
           axisLine={false}
           tickFormatter={(value) => value.slice(0, 3)}
         />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) => `Rs{value}`}
+        />
         <ChartTooltip content={<ChartTooltipContent />} />
-        <Bar dataKey="sent" fill="var(--color-sent)" radius={4} />
-        <Bar dataKey="revieved" fill="var(--color-revieved)" radius={4} />
+        <Bar dataKey="sent" fill={chartConfig.sent.color} radius={4} />
+        <Bar dataKey="received" fill={chartConfig.received.color} radius={4} />
       </BarChart>
     </ChartContainer>
   );

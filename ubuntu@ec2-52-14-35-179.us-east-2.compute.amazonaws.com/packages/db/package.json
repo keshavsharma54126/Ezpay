@@ -1,0 +1,21 @@
+{
+    "name": "@repo/db",
+    "version": "0.0.0",
+    "dependencies": {
+        "@prisma/client": "^5.17.0",
+        "@types/crypto-js": "^4.2.2",
+        "crypto-js": "^4.2.0"
+    },
+    "devDependencies": {
+        "prisma": "^5.17.0"
+    },
+    "exports": {
+        "./client": "./index.ts"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
+    },
+    "scripts": {
+        "build": "prisma generate"
+    }
+}

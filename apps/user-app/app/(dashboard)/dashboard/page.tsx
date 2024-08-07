@@ -91,11 +91,6 @@ export default async function Dashboard() {
                 <BarHigh />
               </div>
             </Card>
-            <Card title={"Types of Transactions"}>
-              <div>
-                <Piecomponent />
-              </div>
-            </Card>
           </div>
           <div className="w-full">
             <ChatCard />

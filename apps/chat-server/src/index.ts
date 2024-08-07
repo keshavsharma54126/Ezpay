@@ -11,7 +11,7 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: CORS_ORIGIN,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -20,7 +20,7 @@ const io = new Server(server, {
 
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: CORS_ORIGIN,
     methods: ["GET", "POST"],
     credentials: true,
   })
