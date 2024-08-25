@@ -5,9 +5,13 @@ Ezpay is a prototype wallet web application.
 ## Features
 
 - **Send Money to  your Friends or pay to Businesses** Users can do p2p transactions as well as onramp and offramp bank transactions.
+![p2p transfer](./apps/user-app/public/p2p.png)
 - **Interactive Dashboard:** There is an interactive dashboard that have various charts to show user transactions and spending in a fun way.
+  ![dashboard](./apps/user-app/public/dashboard.png)
 - **Chat with friends:** Users can chat with  users and request or send money.
+    ![Transfers](./apps/user-app/public/transfer.png)
 - **All Transactions in  one place:** All the transactions can be seen in one place and the  users can also  sort  their transactions by days and months.
+  ![Transactions](./apps/user-app/public/transactions.png)
 
 
 - Clone the repo
